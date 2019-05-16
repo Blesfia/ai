@@ -34,7 +34,7 @@ class BatchOfGames:
       if self.train and i % 10 == 0:
         self.game.train()
     print()
-    print("Finish:", (self.wins* 100)/self.attempts , "% (" + str(self.wins) + ' Wins, ' + str(self.draws) + ' Draws, ' + str(self.loses) + ' Loses)')
+    print("Finish:", ((self.wins + self.draws)* 100)/self.attempts , "% (" + str(self.wins) + ' Wins, ' + str(self.draws) + ' Draws, ' + str(self.loses) + ' Loses)')
 
   def addScore(self, score):
       if score == 1:
@@ -45,13 +45,12 @@ class BatchOfGames:
         self.loses += 1
 # Get initial dataset
 print("Play random")
-BatchOfGames(1000, random=True, train=False, game=game).run()
+BatchOfGames(30000, random=True, train=False, game=game).run()
 
 game.train()
 
-games = 1000
 print("Play Training")
-BatchOfGames(1000, random=False, train=True, game=game).run()
+BatchOfGames(30000, random=False, train=True, game=game).run()
 
 game.train(True)
 print("Play Normal")
